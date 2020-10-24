@@ -1,4 +1,6 @@
-def BFS(graph,start,dest) -> list():
+def BFS(graph,start,dest) -> list(): #Input parameters for this method are 
+                                     #1.Graph in which we're going to search for our destination(dest) node
+                                     #2.start which is our start node and dest which is our destination node
     queue = list()
     visited = list()
     queue.append(start)
