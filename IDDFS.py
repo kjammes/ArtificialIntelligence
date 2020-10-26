@@ -21,6 +21,8 @@ def DFS(currentNode,destination,graph,maxDepth,curList):
     for node in graph[currentNode]:
         if DFS(node,destination,graph,maxDepth-1,curList):
             return True
+        else:
+            curList.pop()
     return False
 
 def iterativeDDFS(currentNode,destination,graph,maxDepth):
@@ -34,4 +36,4 @@ if not iterativeDDFS('A','E',graph,4):
     print("Path is not available")
 else:
     print("A path exists")
-print(path.pop())
+    print(path.pop())
