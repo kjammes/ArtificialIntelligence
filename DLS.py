@@ -1,5 +1,3 @@
-#this program is currently not complete so if it's wrong/not executing properly or not giving desired output that's the reason
-
 graph = {
     'A':['B','C'],
     'B':['D','E'],
@@ -27,4 +25,13 @@ def DLS(start,end,graph,curDepth,dLimit):
             if child not in visited:
                 visited.append(child)
                 stack.append(child)
+        curDepth += 1
+        print("curDepth",curDepth)
+    return []
+
+path = DLS('A','E',graph,0,1)
+if(path):
+    print("{} is the path used to reach the destination".format(path))
+else:
+    print("No path available for the goal node in given depth limit")
             
