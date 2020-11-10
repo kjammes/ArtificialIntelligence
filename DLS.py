@@ -8,30 +8,36 @@ graph = {
     'G':[],
 }
 
-def DLS(start,end,graph,curDepth,dLimit):
-    stack = [start]
-    visited = [start]
-    while stack:
-        curNode = stack.pop()
-        print("Testing for goal node at",curNode)
-        if curNode==end:
-            print("Goal test successful at node ",curNode)
-            return visited
-        else:
-            print("Goal node testing failed.")
-        if curDepth==dLimit:
-            return []
-        for child in graph[curNode]:
-            if child not in visited:
-                visited.append(child)
-                stack.append(child)
-        curDepth += 1
-        print("curDepth",curDepth)
-    return []
+path = ["A"]
 
-path = DLS('A','E',graph,0,1)
-if(path):
-    print("{} is the path used to reach the destination".format(path))
+def DLS(start,goal,level,maxD):
+    print("\nWe're on level",level)
+    print("Goal node testing for",start)
+    path.append(start)
+    if start==goal:
+        print("Goal node test successful!\n")
+        return True
+    else:
+        if path:
+            path.remove(path[-1])
+    print("Goal node testing failed")
+    if level==maxD:
+        return False
+    print("\nExpanding node-->",start)
+    for child in graph[start]:
+        result = DLS(child,goal,level+1,maxD)
+        if result:
+            return result
+    return False
+
+start = 'A'
+goal = input('Enter the goal node:-')
+maxD = int(input("Enter the maximum depth limit:-"))
+print()
+res = DLS('A',goal,0,maxD)
+if(res):
+    print("Path to goal node available")
+    print("Path",path)
 else:
     print("No path available for the goal node in given depth limit")
             
